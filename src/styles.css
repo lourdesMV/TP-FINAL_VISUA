@@ -289,6 +289,30 @@ a {
 	font-size: 0.98rem;
 }
 
+/* Sección de Flourish con scroll-driven storytelling */
+.flourish-scroll {
+	position: relative;
+	/* TOTAL_SLIDES × 100vh — ajustar si cambia el número de slides en story/3707371 */
+	height: 1100vh;
+}
+
+/* Ajusta el contenedor sticky para centrar el embed */
+.flourish-scroll__sticky {
+	position: sticky;
+	top: 0;
+	height: 100vh;
+	width: 100%;
+	overflow: hidden;
+	display: flex;
+	align-items: center; /* Esto asegurará que el mapa quede perfectamente centrado en pantalla */
+}
+
+.flourish-scroll__sticky .flourish-embed {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
 /* Ajustes de layout para pantallas medianas. */
 @media (max-width: 900px) {
 	.hero {
