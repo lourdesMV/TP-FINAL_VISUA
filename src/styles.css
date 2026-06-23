@@ -24,13 +24,14 @@ html {
 /* Estilos base del documento: fondo, tipografía y color general del texto. */
 body {
 	margin: 0;
-	background:
-		radial-gradient(circle at top, rgba(255, 241, 221, 0.18), transparent 30%),
-		linear-gradient(180deg, #ffffff 0%, #ffffff 58%, #f1ece3 100%);
-	color: #000000;
-	font-family: "Georgia", Arial, sans-serif;
-	line-height: 1.5;
-	text-rendering: optimizeLegibility;
+    
+    /* Reemplazamos todos los gradients por el color sólido */
+    background-color: #ffffff; 
+    
+    color: #000000;
+    font-family: "Georgia", Arial, sans-serif;
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
 }
 
 /* Evita que imágenes y video se desborden y los muestra como bloques. */
@@ -160,27 +161,17 @@ a {
 	padding: 100px 0;
 	border-bottom: 1px solid rgba(31, 31, 31, 0.1);
 	background: transparent;
-}
-
-/* Capítulo de introducción: centra su contenido en una sola columna. */
-.chapter--intro {
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: 0;
-	align-items: start;
-	justify-items: center;
 	text-align: center;
 }
 
-/* Contenedor interno de la introducción con ancho limitado. */
+/* Contenedor interno con ancho limitado para legibilidad. */
 .chapter__intro {
-	width: min(100%, 56rem);
+	width: min(100%, 66rem);
 	margin: 0 auto;
-	max-width: 56rem;
-	text-align: center;
+	padding-inline: clamp(0.75rem, 2vw, 1.5rem);
 }
 
-/* Subtítulo o etiqueta del capítulo. */
+/* Etiqueta superior del capítulo. */
 .chapter .chapter__eyebrow {
 	margin: 0 auto 1.25rem;
 	font-size: 0.95rem;
@@ -191,8 +182,8 @@ a {
 	max-width: fit-content;
 }
 
-/* Título del capítulo introductorio. */
-.chapter__intro h2 {
+/* Título unificado para todos los capítulos. */
+.chapter h2 {
 	margin: 0 0 1.6rem;
 	font-family: "Cormorant Garamond", Georgia, serif;
 	font-size: clamp(2.3rem, 4.8vw, 4.4rem);
@@ -203,24 +194,14 @@ a {
 	text-wrap: balance;
 }
 
-/* Párrafo destacado de apertura; se centra con auto en los laterales. */
-.chapter .chapter__lead {
-	max-width: 46rem;
-	margin: 0 auto;
-	font-size: clamp(1.15rem, 2.2vw, 1.45rem);
-	line-height: 1.7;
-	color: rgba(31, 31, 31, 0.84);
-	text-align: center;
-}
-
-/* Texto de desarrollo del capítulo; mantiene una medida cómoda de lectura. */
+/* Texto de desarrollo unificado para todos los capítulos. */
+.chapter .chapter__lead,
 .chapter .chapter__body {
-	max-width: 44rem;
+	max-width: 100%;
 	margin: 1.4rem auto 0;
 	font-size: clamp(1.05rem, 1.8vw, 1.2rem);
 	line-height: 1.9;
 	color: rgba(31, 31, 31, 0.8);
-	text-align: center;
 }
 
 /* Etiqueta auxiliar usada dentro de otras secciones o tarjetas. */
@@ -232,29 +213,10 @@ a {
 	color: #f03d1d;
 }
 
-/* Títulos generales dentro de secciones chapter. */
-.chapter h2 {
-	margin: 0;
-	font-family: "Cormorant Garamond", Georgia, serif;
-	font-size: clamp(2.2rem, 4.8vw, 4.1rem);
-	line-height: 0.98;
-	font-weight: 600;
-	text-wrap: balance;
-	color: #222;
-}
-
-/* Párrafos genéricos dentro de chapter. */
-.chapter p {
-	margin: 0.9rem 0 0;
-	max-width: 36rem;
-	color: rgba(31, 31, 31, 0.74);
-	font-size: 1.05rem;
-}
-
 /* Variante de chapter sin espacio superior ni borde inferior. */
 .chapter--stub {
-	padding-top: 0;
-	border-bottom: 0;
+	padding-top: 10;
+	border-bottom: 10;
 }
 
 /* Grilla de tarjetas para la parte final o de apoyo. */
@@ -288,40 +250,100 @@ a {
 	margin: 0;
 	font-size: 0.98rem;
 }
+/* Contenedor que abraza el título y el gráfico */
+.bloque-interactivo {
+    position: relative;
+    width: 100%;
+}
 
-/* Sección de Flourish con scroll-driven storytelling */
+/* El título que se queda pegado arriba */
+.titulo-seccion-grafico {
+    position: sticky;
+    top: 0;
+    z-index: 100; /* Lo mantiene por encima del gráfico y los textos */
+    background-color: rgba(255, 255, 255, 0.95); /* Fondo casi sólido para tapar lo que scrollea abajo */
+    backdrop-filter: blur(4px); /* Un leve difuminado estético */
+    padding: 1.5rem 1rem;
+    margin: 0; 
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,0.05); /* Línea sutil de separación */
+}
+
+.titulo-seccion-grafico h3 {
+    margin: 0 auto;
+    max-width: 900px;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #222;
+    text-wrap: balance;
+}
+/* Contenedor principal: usa Flexbox para poner las cosas lado a lado */
 .flourish-scroll {
-	position: relative;
+    position: relative;
+    display: flex; 
+    align-items: flex-start; /* Fundamental para que funcione el sticky */
+    max-width: 1400px; /* Ancho máximo para monitores grandes */
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
-/* Ajusta el contenedor sticky para centrar el embed */
+/* Lado izquierdo: Gráfico FIJO */
+/* Lado izquierdo: Gráfico FIJO - ACTUALIZADO */
 .flourish-scroll__sticky {
-	position: sticky;
-	top: 0;
-	height: 100vh;
-	width: 100%;
-	overflow: hidden;
-	display: flex;
-	align-items: center; /* Esto asegurará que el mapa quede perfectamente centrado en pantalla */
+    position: sticky;
+    top: 5rem; /* Ajuste clave: lo bajamos para que no colisione con el título de arriba */
+    width: 50%; 
+    height: calc(100vh - 5rem); /* Le restamos el espacio que ocupa el título */
+    display: flex;
+    align-items: center; 
+    padding-right: 2rem; 
 }
 
+/* Ajuste del embed dentro de la mitad izquierda */
 .flourish-scroll__sticky .flourish-embed {
-	width: 100%;
-	height: 100%;
-	margin: 0;
+    width: 100%;
+    height: 75vh;
+    margin: 0;
 }
 
+/* Lado derecho: Textos que SCROLLEAN */
 .textos-flotantes {
+    width: 50%; /* Ocupa la mitad derecha */
     position: relative;
     z-index: 10;
-    pointer-events: none; /* Deja hacer clic en el mapa a través de las cajas vacías */
+    padding-left: 2rem;
 }
 
+/* Contenedor invisible que marca la altura de cada "paso" */
 .step {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 0 5%; /* Esto deja un pequeño margen para que la tarjeta no toque los bordes de la pantalla */
+    min-height: 100vh; 
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start;
+    
+    /* El ajuste clave: agregamos un margen inferior casi del tamaño de la pantalla
+       para asegurarnos de que haya un "vacío" entre tarjeta y tarjeta */
+    margin-bottom: 80vh; 
+}
+
+/* Evitamos que el último paso deje un hueco blanco gigante antes del footer */
+.step:last-child {
+    margin-bottom: 15vh;
+}
+
+/* La tarjeta con el texto */
+.tarjeta-scroll {
+    background-color: #ffffff;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 500px;
 }
 
 /* Clases mágicas para ubicar la tarjeta */
@@ -380,7 +402,6 @@ a {
 		border-radius: 22px;
 	}
 
-	.chapter--intro,
 	.chapter__grid {
 		grid-template-columns: 1fr;
 	}
@@ -417,10 +438,9 @@ a {
 	padding: 2rem 1.5rem;
 }
 
-.figure {
-	position: relative;
-	z-index: 1;
-	width: min(100%, 60rem);
+#figure {
+  /* Hace que la sección mida 3 veces el alto de la pantalla */
+  height: 300vh; 
 }
 
 .figure__eyebrow {
@@ -502,4 +522,59 @@ a {
 @media (prefers-reduced-motion: reduce) {
 	.figure__reveal { opacity: 1; transform: none; transition: none; }
 	.figure__hint { display: none; }
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+	background: 	
+		radial-gradient(circle at top, rgba(255, 241, 221, 0.18), transparent 30%),
+		linear-gradient(180deg, #ffffff 0%, #ffffff 58%, #f1ece3 100%);    color: white;
+}
+
+/* Texto interno del footer */
+footer p {
+    color: #780000;
+}
+
+
+/* Estilos para el rectángulo con la imagen */
+.rectangulo-parallax {
+  
+  /* 2. EL TRUCO: Fijar el fondo para crear el efecto de "descubrir" */
+  background-attachment: fixed;
+  
+  /* 3. Ajustar cómo se ve la imagen */
+  background-position: center; /* Centra la imagen */
+  background-size: cover;      /* Hace que la imagen cubra todo el contenedor sin deformarse */
+  background-repeat: no-repeat;
+  
+  /* 4. Darle tamaño al rectángulo */
+  width: 100%;
+  height: 400px; /* Podés ajustar la altura, ej: 50vh para ocupar media pantalla */
+  
+  /* 5. Centrar el texto "Capítulo 1" justo en el medio */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilos para el texto del capítulo */
+.rectangulo-parallax h2 {
+  color: #ffffff;
+  font-size: 3rem;
+  font-family: serif; /* Combina bien con la tipografía de tu captura */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  
+  /* Opcional: una sombra sutil para que se lea bien si la imagen de fondo es muy clara */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Estilos de relleno solo para poder hacer scroll en la prueba */
+.texto-normal {
+  height: 600px; 
+  padding: 50px;
+  background-color: #ffffff;
+  text-align: center;
 }

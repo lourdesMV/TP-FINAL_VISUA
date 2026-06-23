@@ -20,12 +20,11 @@ if (heroImage && heroSection) {
 }
 
 // ─── Flourish scroll-driven story con HTML (Intersection Observer) ────────
+// Maneja múltiples secciones .flourish-scroll de forma independiente
 
-const flourishSection = document.querySelector('.flourish-scroll');
-
-if (flourishSection) {
+document.querySelectorAll('.flourish-scroll').forEach(flourishSection => {
 	let playerReady = false;
-	let slideActual = 0; // Memoria para saber qué slide debería estar viéndose
+	let slideActual = 0;
 
 	function getFlourishIframe() {
 		return flourishSection.querySelector('iframe');
@@ -33,9 +32,7 @@ if (flourishSection) {
 
 	function sendSlide(index) {
 		const iframe = getFlourishIframe();
-		// Si no hay iframe o no está listo, no hacemos nada todavía
 		if (!iframe || !playerReady) return;
-		
 		const baseSrc = iframe.src.split('#')[0];
 		iframe.src = `${baseSrc}#slide-${index}`;
 	}
@@ -43,11 +40,9 @@ if (flourishSection) {
 	function markPlayerReady() {
 		if (playerReady) return;
 		playerReady = true;
-		// Apenas Flourish esté listo, le mandamos la slide en la que estamos parados
 		sendSlide(slideActual);
 	}
 
-	// Intenta detectar cuándo Flourish cargó por completo
 	window.addEventListener('message', (event) => {
 		const iframe = getFlourishIframe();
 		if (iframe && event.source === iframe.contentWindow) {
@@ -55,25 +50,20 @@ if (flourishSection) {
 		}
 	});
 
-	// EL SALVAVIDAS: Si Flourish tarda o el navegador bloquea el mensaje, lo forzamos a los 3 segundos
 	setTimeout(markPlayerReady, 3000);
 
-	// ─── Lógica del scroll (Intersection Observer) ───
-	const steps = document.querySelectorAll('.step');
+	const steps = flourishSection.querySelectorAll('.step');
 	const observer = new IntersectionObserver((entradas) => {
 		entradas.forEach(entrada => {
-			// Cuando el centro de la caja cruzó la mitad de tu pantalla
 			if (entrada.isIntersecting) {
-				// Guardamos el número en la memoria y lo enviamos
 				slideActual = entrada.target.getAttribute('data-slide');
 				sendSlide(slideActual);
 			}
 		});
 	}, { rootMargin: '-50% 0px -50% 0px' });
 
-	// Le decimos al observador que mire todas las cajas invisibles y visibles
 	steps.forEach(step => observer.observe(step));
-}
+});
 
 // ─── Capítulo de la cifra: conteo 0 → 70.000.000 con el scroll ──────────
 (function () {
@@ -102,7 +92,10 @@ if (flourishSection) {
 		const raw = Math.min(1, Math.max(0, -rect.top / scrollable));
 
 		// el número cuenta en la franja central del scroll (con "aire" antes/después)
-		const counting = Math.min(1, Math.max(0, (raw - 0.12) / 0.70));
+		const LEAD_IN    = 0.08;  // aire antes (era 0.12)
+		const COUNT_SPAN = 0.90;  // franja de conteo (era 0.70) → más grande = más lento
+		const counting = Math.min(1, Math.max(0, (raw - LEAD_IN) / COUNT_SPAN));
+
 		const value = Math.round(ease(counting) * TARGET);
 
 		countEl.textContent = nf.format(value);
@@ -110,7 +103,6 @@ if (flourishSection) {
 		figureEl.classList.toggle('is-complete', counting >= 0.999);
 		hintEl.style.opacity = raw > 0.05 ? '0' : '1';
 	}
-
 	update();
 	window.addEventListener('scroll', update, { passive: true });
 	window.addEventListener('resize', update);
