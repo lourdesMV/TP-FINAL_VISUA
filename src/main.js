@@ -67,7 +67,7 @@ document.querySelectorAll('.flourish-scroll').forEach(flourishSection => {
 
 // ─── Capítulo de la cifra: conteo 0 → 70.000.000 con el scroll ──────────
 (function () {
-	const TARGET = 70000000;
+	const TARGET = 6000000;
 	const section = document.getElementById('figure');
 	if (!section) return;
 
@@ -77,12 +77,12 @@ document.querySelectorAll('.flourish-scroll').forEach(flourishSection => {
 	const hintEl = document.getElementById('hint');
 	const nf = new Intl.NumberFormat('es-AR'); // 70.000.000
 
-	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-	if (reduceMotion) {
-		countEl.textContent = nf.format(TARGET);
-		figureEl.classList.add('is-complete');
-		return;
-	}
+	// const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	// if (reduceMotion) {
+	// 	countEl.textContent = nf.format(TARGET);
+	// 	figureEl.classList.add('is-complete');
+	// 	return;
+	// }
 
 	const ease = (t) => 1 - Math.pow(1 - t, 3); // easeOutCubic
 
@@ -92,8 +92,8 @@ document.querySelectorAll('.flourish-scroll').forEach(flourishSection => {
 		const raw = Math.min(1, Math.max(0, -rect.top / scrollable));
 
 		// el número cuenta en la franja central del scroll (con "aire" antes/después)
-		const LEAD_IN    = 0.08;  // aire antes (era 0.12)
-		const COUNT_SPAN = 0.90;  // franja de conteo (era 0.70) → más grande = más lento
+		const LEAD_IN    = 0.02;  // aire antes (era 0.12)
+		const COUNT_SPAN = 0.5;  // franja de conteo (era 0.70) → más grande = más lento
 		const counting = Math.min(1, Math.max(0, (raw - LEAD_IN) / COUNT_SPAN));
 
 		const value = Math.round(ease(counting) * TARGET);

@@ -92,8 +92,8 @@ a {
 	inset: 0;
 	background:
 		radial-gradient(circle at 50% 42%, rgba(245, 227, 181, 0.1), transparent 22%),
-		linear-gradient(90deg, rgba(10, 12, 14, 0.3), transparent 18%, transparent 82%, rgba(10, 12, 14, 0.3));
-	z-index: 2;
+		linear-gradient(90deg, rgba(10, 12, 14, 0.3), transparent 20%, transparent 80%, rgba(10, 12, 14, 0.3)); 
+		z-index: 2;
 }
 
 /* Imagen de fondo que cubre todo el hero sin deformarse. */
@@ -423,7 +423,7 @@ a {
 /* Sección alta: el scroll dentro de ella maneja el conteo. */
 .figure-scroll {
 	position: relative;
-	height: 320vh;            /* más alto = el número sube más lento */
+	height: 220vh;            /* más alto = el número sube más lento */
 }
 
 /* El panel queda fijo (sticky) y centrado mientras scrolleás la sección. */
@@ -516,6 +516,15 @@ a {
 	text-transform: uppercase;
 	color: rgba(31, 31, 31, 0.74);
 	transition: opacity 0.4s ease;
+}
+
+.timeline-container {
+    width: min(100%, 1200px);
+    margin: 4rem auto 6rem auto;
+}
+
+.timeline-container .flourish-embed {
+    width: 100%;
 }
 
 /* Accesibilidad: menos movimiento = número final fijo. */
