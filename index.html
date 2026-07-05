@@ -11,6 +11,65 @@
 	<link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+	<nav class="chapter-progress" aria-label="Progreso de capítulos">
+		<ol class="chapter-progress__list">
+			<li class="chapter-progress__item" data-chapter="0">
+				<a class="chapter-progress__link" href="#capitulo-0">
+					<span class="chapter-progress__label">Cap. 0 — Una Alemania derrotada</span>
+					<span class="chapter-progress__dot"></span>
+				</a>
+			</li>
+			<li class="chapter-progress__item" data-chapter="1">
+				<a class="chapter-progress__link" href="#capitulo-1">
+					<span class="chapter-progress__label">Cap. 1 — La República de Weimar se derrumba</span>
+					<span class="chapter-progress__dot"></span>
+				</a>
+			</li>
+			<li class="chapter-progress__item" data-chapter="2">
+				<a class="chapter-progress__link" href="#capitulo-2">
+					<span class="chapter-progress__label">Cap. 2 — El ascenso del Partido Nazi</span>
+					<span class="chapter-progress__dot"></span>
+				</a>
+			</li>
+			<li class="chapter-progress__item" data-chapter="3">
+				<a class="chapter-progress__link" href="#capitulo-3">
+					<span class="chapter-progress__label">Cap. 3 — La construcción del enemigo</span>
+					<span class="chapter-progress__dot"></span>
+				</a>
+			</li>
+			<li class="chapter-progress__item" data-chapter="4">
+				<a class="chapter-progress__link" href="#capitulo-4">
+					<span class="chapter-progress__label">Cap. 4 — Europa bajo el nazismo</span>
+					<span class="chapter-progress__dot"></span>
+				</a>
+			</li>
+			<li class="chapter-progress__item" data-chapter="5">
+				<a class="chapter-progress__link" href="#capitulo-5">
+					<span class="chapter-progress__label">Cap. 5 — La industrialización del exterminio</span>
+					<span class="chapter-progress__dot"></span>
+				</a>
+			</li>
+			<li class="chapter-progress__item" data-chapter="6">
+				<a class="chapter-progress__link" href="#capitulo-6">
+					<span class="chapter-progress__label">Cap. 6 — Las víctimas</span>
+					<span class="chapter-progress__dot"></span>
+				</a>
+			</li>
+			<li class="chapter-progress__item" data-chapter="7">
+				<a class="chapter-progress__link" href="#capitulo-7">
+					<span class="chapter-progress__label">Cap. 7 — La magnitud humana</span>
+					<span class="chapter-progress__dot"></span>
+				</a>
+			</li>
+			<li class="chapter-progress__item" data-chapter="8">
+				<a class="chapter-progress__link" href="#capitulo-8">
+					<span class="chapter-progress__label">Cap. 8 — Después del Holocausto</span>
+					<span class="chapter-progress__dot"></span>
+				</a>
+			</li>
+		</ol>
+	</nav>
+
 	<main class="page-shell">
 		<!-- HERO SECTION -->
 		<section class="hero" aria-label="Introducción">
@@ -57,7 +116,7 @@
 		</section>
 
 		<!-- Capitulo 0: contexto histórico -->
-		<div class="rectangulo-parallax" style="background-image: url('img/Escape.jpg');">
+		<div class="rectangulo-parallax" id="capitulo-0" style="background-image: url('img/Escape.jpg');">
 			<h2>Capítulo 0</h2>
 		</div>
 
@@ -212,7 +271,7 @@
 		
 	<!-- Capitulo 1:  -->
 
-	<div class="rectangulo-parallax" style="background-image: url('img/Escape.jpg');">
+	<div class="rectangulo-parallax" id="capitulo-1" style="background-image: url('img/Escape.jpg');">
 			<h2>Capítulo 1</h2>
 	</div>
 
@@ -229,7 +288,7 @@
 
 	<!-- Capitulo 2: EL ASCENSO NAZI-->
 
-	<div class="rectangulo-parallax" style="background-image: url('img/Hitler2.jpg');">
+	<div class="rectangulo-parallax" id="capitulo-2" style="background-image: url('img/Hitler2.jpg');">
 		<h2>Capítulo 2</h2>
 	</div>
 
@@ -237,12 +296,9 @@
 		<div class="chapter__intro">
 			<h2>El ascenso del Partido Nazi</h2>
 			<p class="chapter__body">
-				¿Cómo pasó el Partido Nazi de ser marginal a controlar Alemania?
-				<br></br>
+				<h3>¿Cómo pasó el Partido Nazi de ser marginal a controlar Alemania?</h3>
+				
 				El líder del Partido Nazi, Adolf Hitler, se convirtió en canciller de Alemania el 30 de enero de 1933. En los meses siguientes, los nazis transformaron Alemania de una democracia en una dictadura. El ascenso al poder de Hitler y los nazis no fue inevitable. Fue el resultado de muchos factores, incluyendo el momento oportuno, las circunstancias y la pura suerte.
-				<br></br>
-				<br></br>
-
 			</p>
 		</div>
 
@@ -254,43 +310,47 @@
 		
 			<section class="flourish-scroll">
 				<div class="flourish-scroll__sticky">
-					<div class="flourish-embed flourish-chart" 
+					<div class="flourish-embed flourish-chart"
 						data-src="story/3713567">
+					</div>
+					<div class="legend">
+						<span class="legend__dot legend__dot--origin"></span> Partido Nazi (NSDAP)
+						<span class="legend__note">Cada punto representa una banca(60.000 votos) del Reichstag</span>
 					</div>
 				</div>
 
 				<div class="textos-flotantes">
 					<div class="step" data-slide="0">
 						<div class="tarjeta-scroll">
-							<h3>Mayo de 1928 — los márgenes.</h3>
+							<h2>Los márgenes</h2>
 							En 1928 Alemania vivía sus mejores años desde la guerra. La economía se había estabilizado, la cultura florecía y la democracia parecía, por fin, funcionar. En ese clima, el mensaje del Partido Nazi —antisemita, antidemocrático— no le interesaba a casi nadie. Sacó el 2,6 % de los votos y doce bancas en un parlamento de casi quinientas. Era un partido de la periferia.
 						</div>
 					</div>
 
 					<div class="step" data-slide="1">
 						<div class="tarjeta-scroll">
-							<h3>Septiembre de 1930 — el golpe.</h3>
+							<h2>El golpe</h2>
 							En octubre de 1929, el desplome de Wall Street cruzó el océano. El desempleo se disparó y el gobierno se mostró incapaz de frenarlo. En las elecciones de septiembre de 1930, los nazis pasaron de doce a ciento siete bancas y se convirtieron, de un día para el otro, en el segundo partido del país. El resultado conmocionó a Alemania. No fue un cambio de ideas: fue la crisis lo que movió los votos. La curva del voto nazi sigue, casi punto por punto, la curva del paro.
 						</div>
 					</div>
 
 					<div class="step" data-slide="2">
 						<div class="tarjeta-scroll">
-							<h3>Julio de 1932 — el techo.</h3>
+							<h2>El techo</h2>
 							1932 fue un año de cinco elecciones y violencia constante en las calles. En julio, el Partido Nazi alcanzó su mejor resultado en una elección libre: el 37 % y doscientas treinta bancas. Era el partido más grande del Reichstag. Hitler exigió la cancillería. Y el presidente Hindenburg se la negó. Ahí aparece el dato que la narrativa no puede perder: ni en su mejor momento los nazis tuvieron mayoría propia. El sistema seguía sin poder formar gobierno, pero tampoco entregaba el poder.
 						</div>
 					</div>
 
 					<div class="step" data-slide="3">
 						<div class="tarjeta-scroll">
-							<h3>Noviembre de 1932 — la fiebre que parecía ceder.</h3>
+							<h2>La fiebre que parecía ceder</h2>
 							Apenas cuatro meses después se votó otra vez. Los alemanes estaban agotados de tanta campaña, y los nazis perdieron terreno: bajaron a ciento noventa y seis bancas. El aura de invencibilidad se desinfló. Muchos observadores creyeron que el peligro había pasado, que el partido había tocado su límite y empezaba a retroceder.
 						</div>
 					</div>
 
 					<div class="step" data-slide="4">
 						<div class="tarjeta-scroll">
-							<h3>Marzo de 1933 — ya no fueron las urnas.</h3>
+							<h2>Ya no fueron las urnas</h2>
 							No fue así. Mientras el voto nazi caía, un pequeño grupo de conservadores alrededor de Hindenburg negociaba en secreto. Convencidos de que podrían usar a Hitler y controlarlo, lo hicieron nombrar canciller el 30 de enero de 1933. Las elecciones de marzo ya se celebraron bajo intimidación: con el parlamento incendiado, las libertades suspendidas y los líderes comunistas detenidos. Aun así, con todo el aparato del Estado a su favor, los nazis llegaron al 44 %. Necesitaron una coalición y, después, la Ley Habilitante para hacerse con el poder absoluto.
 						</div>
 					</div>
@@ -303,7 +363,7 @@
 
 	<!-- CAPITULO 3:  La construcción del enemigo -->
 
-	<div class="rectangulo-parallax" style="background-image: url('img/Escape.jpg');">
+	<div class="rectangulo-parallax" id="capitulo-3" style="background-image: url('img/Escape.jpg');">
 	<h2>Capítulo 3</h2>
 	</div>
 
@@ -342,9 +402,44 @@
 	</div>
 	</section>
 
+	<section class="chapter chapter--stub">
+		<div class="chapter__intro">
+			<h2>
+				La (im)posibilidad de huir.
+			</h2>
+
+			<p class="chapter__body">
+			Cuando el 30 de enero de 1933 Adolf Hitler es proclamado canciller del Reich, culmina de manera provisional en Alemania un largo período de agitación política. 
+			La influencia de su partido ―el NSDAP― y su ideario extremista aumentan considerablemente. 
+			Ya no hay lugar para quienes piensan distinto: desde un principio, los opositores al régimen sufren intimidaciones y persecuciones y son enviados a campos de concentración. 
+			Por eso, pronto muchos disidentes políticos y culturales abandonan el país, sin que la condición de judío constituya la línea divisoria primaria. 
+			Entre estos primeros emigrantes o refugiados se encuentran muchos escritores, periodistas y artistas. 
+			<strong>Existe una diferencia entre emigrar y refugiarse</strong>, aunque es difícil explicar dónde radica la separación entre ambos.
+			</p>
+			<h3> En busca de nuevo hogar </h3>
+			<p class="chapter__body">Entre 1933 y 1937, un total de 130.000 judíos abandonaron la Alemania nacionalsocialista. Muchos se dirigieron a Sudáfrica, Palestina y Latinoamérica. También hubo un flujo hacia Europa del Este, formado en particular por familias que originalmente procedían de esa región. Sin embargo, varios miles permanecieron en Europa septentrional y occidental.</p>
+			<figure class="testimony">
+				<span class="testimony__mark">“</span>
+				<blockquote>Creo que, hoy por hoy, todos los judíos alemanes buscan por todo el mundo y ya no pueden entrar.</blockquote>
+				<figcaption><strong>Edith Frank</strong> · carta a una conocida en Buenos Aires, fines de 1937</figcaption>
+			</figure>
+		</div>
+
+		<div class="exodo-mapa">
+			<div class="scrolly__graphic">
+				<svg id="map" aria-label="Mapa mundial de rutas de refugiados"></svg>
+				<div class="legend">
+					<span class="legend__dot legend__dot--origin"></span> Alemania (origen)
+					<span class="legend__note">El grosor de la línea representa el número de refugiados</span>
+				</div>
+			</div>
+			<div class="scrolly__narrative" id="narrative"></div>
+		</div>
+	</section>
+
 	<!-- Capitulo 4: Europa bajo el nazismo  -->
 
-	<div class="rectangulo-parallax" style="background-image: url('img/barbarroja.jpg');">
+	<div class="rectangulo-parallax" id="capitulo-4" style="background-image: url('img/barbarroja.jpg');">
 			<h2>Capítulo 4</h2>
 	</div>
 	
@@ -361,7 +456,7 @@
 
 	<!-- Capitulo 5: La industrialización del exterminio  -->
 
-	<div class="rectangulo-parallax" style="background-image: url('img/guetos.jpg');">
+	<div class="rectangulo-parallax" id="capitulo-5" style="background-image: url('img/guetos.jpg');">
 			<h2>Capítulo 5</h2>
 	</div>
 	
@@ -379,7 +474,7 @@
 
 	<!-- Capitulo 6: Las víctimas  -->
 
-	<div class="rectangulo-parallax" style="background-image: url('img/barbarroja.jpg');">
+	<div class="rectangulo-parallax" id="capitulo-6" style="background-image: url('img/barbarroja.jpg');">
 			<h2>Capítulo 6</h2>
 	</div>
 	
@@ -397,7 +492,7 @@
 
 	<!-- Capitulo 7: La magnitud humana  -->
 
-	<div class="rectangulo-parallax" style="background-image: url('img/barbarroja.jpg');">
+	<div class="rectangulo-parallax" id="capitulo-7" style="background-image: url('img/barbarroja.jpg');">
 			<h2>Capítulo 7</h2>
 	</div>
 	
@@ -414,7 +509,7 @@
 
 	<!-- Capitulo 8: Después del Holocausto  -->
 
-	<div class="rectangulo-parallax" style="background-image: url('img/barbarroja.jpg');">
+	<div class="rectangulo-parallax" id="capitulo-8" style="background-image: url('img/barbarroja.jpg');">
 			<h2>Capítulo 8</h2>
 	</div>
 	
@@ -463,6 +558,13 @@
 <footer>
 	<p>Visualización de Datos · Sección 1 · 2026</p>
 </footer>
+
+<script src="exodo-refugiados/lib/d3.min.js"></script>
+<script src="exodo-refugiados/lib/topojson-client.min.js"></script>
+<script src="exodo-refugiados/lib/gsap.min.js"></script>
+<script src="exodo-refugiados/lib/ScrollTrigger.min.js"></script>
+<script src="exodo-refugiados/data/world-atlas.js"></script>
+<script src="exodo-refugiados/main.js"></script>
 
 <script src="./main.js" defer></script>
 

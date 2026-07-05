@@ -5,9 +5,10 @@
 	--surface-strong: rgba(10, 12, 14, 0.88);
 	--text: #f6f0e7;
 	--muted: rgba(246, 240, 231, 0.74);
-	--accent: #e7e5e2;
-	--accent-deep: #f7f6f2;
-	--line: rgba(255, 255, 255, 0.12);
+	--accent: #950606;
+	--accent-deep: #5a0d0f;
+	--line: rgba(26, 26, 26, 0.14);
+	--line-soft: rgba(26, 26, 26, 0.08);
 	--max-width: 1180px;
 }
 
@@ -194,15 +195,19 @@ a {
 	text-wrap: balance;
 }
 
-/* Texto de desarrollo unificado para todos los capítulos. */
-.chapter .chapter__lead,
+.chapter .chapter__lead em { color: var(--accent); font-style: italic; }
+
+/* Cuerpo: medida acotada y alineado a la izquierda para leer de verdad */
 .chapter .chapter__body {
-	max-width: 100%;
-	margin: 1.4rem auto 0;
-	font-size: clamp(1.05rem, 1.8vw, 1.2rem);
-	line-height: 1.9;
-	color: rgba(31, 31, 31, 0.8);
+	max-width: var(--measure);
+	margin: 1.6rem auto 0;
+	font-size: 1.075rem;
+	line-height: 1.8;
+	color: var(--ink-soft);
+	text-align: left;
+	text-wrap: pretty;
 }
+.chapter .chapter__body strong { color: var(--ink); font-weight: 600; }
 
 /* Etiqueta auxiliar usada dentro de otras secciones o tarjetas. */
 .chapter__label {
@@ -335,15 +340,21 @@ a {
     margin-bottom: 15vh;
 }
 
-/* La tarjeta con el texto */
+/* La tarjeta con el texto: mismo estilo que la tarjeta del mapa del éxodo
+   (.exodo-step__card) — fondo blanco, borde izquierdo rojo, sombra suave. */
 .tarjeta-scroll {
-    background-color: #ffffff;
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    padding: 2.5rem;
-    width: 100%;
-    max-width: 500px;
+	background-color: rgba(255, 255, 255, 0.96);
+	border: 1px solid rgba(31, 31, 31, 0.12);
+	border-left: 3px solid #f03d1d;
+	border-radius: 2px;
+	box-shadow: 0 16px 40px rgba(26, 22, 18, 0.1);
+	padding: 2.2rem;
+	width: 100%;
+	max-width: 480px;
+	pointer-events: auto;
+	font-size: 1.02rem;
+	line-height: 1.7;
+	color: var(--ink-soft);
 }
 
 /* Clases mágicas para ubicar la tarjeta */
@@ -357,18 +368,6 @@ a {
 
 .pos-der {
   justify-content: flex-end;
-}
-
-/* El diseño de la caja de texto */
-.tarjeta-scroll {
-  background-color: rgba(255, 255, 255, 0.95);
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  padding: 2rem;
-  max-width: 450px;
-  pointer-events: auto; 
-  /* Asegurate de NO tener margin-left ni margin auto acá */
 }
 
 /* Estilo para la imagen dentro de la tarjeta */
@@ -582,8 +581,346 @@ footer p {
 
 /* Estilos de relleno solo para poder hacer scroll en la prueba */
 .texto-normal {
-  height: 600px; 
+  height: 600px;
   padding: 50px;
   background-color: #ffffff;
   text-align: center;
+}
+
+/* ─── BARRA DE PROGRESO DE CAPÍTULOS ───────────────────────────────── */
+/* Nav fija a la derecha con un punto por capítulo. */
+.chapter-progress {
+	position: fixed;
+	top: 50%;
+	right: 1.6rem;
+	transform: translateY(-50%);
+	z-index: 500;
+}
+
+.chapter-progress__list {
+	position: relative;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.3rem;
+}
+
+/* Línea guía de fondo, detrás de todos los puntos. */
+.chapter-progress__list::before {
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: 0;
+	bottom: 0;
+	width: 2px;
+	transform: translateX(-50%);
+	background: rgba(31, 31, 31, 0.15);
+}
+
+
+.chapter-progress__item {
+	position: relative;
+}
+
+.chapter-progress__link {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+}
+
+.chapter-progress__dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: #fff;
+	border: 2px solid rgba(31, 31, 31, 0.32);
+	transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.chapter-progress__item.is-active .chapter-progress__dot {
+	background: #f03d1d;
+	border-color: #f03d1d;
+	transform: scale(1.35);
+}
+
+/* Etiqueta con el nombre del capítulo: aparece al pasar el mouse o si está activo. */
+.chapter-progress__label {
+	position: absolute;
+	right: 100%;
+	top: 50%;
+	margin-right: 0.5rem;
+	transform: translate(-8px, -50%);
+	font-size: 0.72rem;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	color: #1f1f1f;
+	background: rgba(255, 255, 255, 0.96);
+	padding: 0.35rem 0.65rem;
+	border-radius: 4px;
+	white-space: nowrap;
+	opacity: 0;
+	pointer-events: none;
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+	transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.chapter-progress__item:hover .chapter-progress__label {
+	opacity: 1;
+	transform: translate(0, -50%);
+}
+
+/* En pantallas chicas la ocultamos para no tapar el contenido. */
+@media (max-width: 720px) {
+	.chapter-progress {
+		display: none;
+	}
+}
+
+/* ─── MAPA INTERACTIVO: ÉXODO DE REFUGIADOS (incrustado) ───────────── */
+/* Sin fondo ni sombra propios: usa el blanco de la página, como el resto del sitio. */
+.exodo-mapa {
+	position: relative;
+	display: flex;
+	align-items: flex-start;
+	width: 100%;
+	margin: 3rem auto 0;
+}
+
+/* Mapa fijo (sticky) mientras la narrativa scrollea al lado. */
+.scrolly__graphic {
+	position: sticky;
+	top: 0;
+	width: 60%;
+	height: 100vh;
+	flex-shrink: 0;
+}
+
+#map {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+.scrolly__narrative {
+	width: 40%;
+	padding: 0 3vw;
+}
+
+/* Tarjetas de la narrativa: mismo tratamiento que .tarjeta-scroll del resto del sitio. */
+.exodo-step {
+	min-height: 90vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.exodo-step__card {
+	background: rgba(255, 255, 255, 0.96);
+	border: 1px solid rgba(31, 31, 31, 0.12);
+	border-left: 3px solid rgba(240, 61, 29, 0.4);
+	border-radius: 2px;
+	box-shadow: 0 16px 40px rgba(26, 22, 18, 0.1);
+	padding: 1.8rem 2rem;
+	opacity: 0.4;
+	transform: translateY(12px);
+	transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.5s ease;
+}
+.exodo-step.is-active .exodo-step__card {
+	opacity: 1;
+	transform: translateY(0);
+	border-left-color: #f03d1d;
+}
+.exodo-step__country {
+	font-family: "Cormorant Garamond", Georgia, serif;
+	font-size: 1.7rem;
+	font-weight: 600;
+	color: #1f1f1f;
+	margin: 0 0 0.2rem;
+}
+.exodo-step__count {
+	font-size: 1rem;
+	color: #f03d1d;
+	font-weight: 700;
+	margin: 0 0 0.9rem;
+}
+.exodo-step__count .num { font-variant-numeric: tabular-nums; }
+.exodo-step__text {
+	color: rgba(31, 31, 31, 0.66);
+	font-size: 0.98rem;
+	margin: 0;
+}
+.exodo-step--intro .exodo-step__card,
+.exodo-step--final .exodo-step__card {
+	border-left-color: #f03d1d;
+}
+.exodo-step--intro .exodo-step__country,
+.exodo-step--final .exodo-step__country {
+	color: #f03d1d;
+}
+
+/* Elementos del SVG del mapa. */
+.country {
+	fill: #e4ded2;
+	stroke: #ffffff;
+	stroke-width: 0.4px;
+}
+.country--origin {
+	fill: #f03d1d;
+	filter: drop-shadow(0 0 6px rgba(240, 61, 29, 0.45));
+}
+.country--dest.is-lit {
+	fill: #f6dcd4;
+}
+.route {
+	fill: none;
+	stroke: #f03d1d;
+	stroke-linecap: round;
+	filter: drop-shadow(0 1px 2px rgba(31, 31, 31, 0.25));
+	opacity: 1;
+	transition: opacity 0.6s ease;
+}
+/* Rutas anteriores, atenuadas para que predomine la del destino activo. */
+.route.is-dimmed {
+	opacity: 0.22;
+	filter: none;
+}
+.route-label {
+	fill: #1f1f1f;
+	font-family: Georgia, Arial, sans-serif;
+	font-size: 11px;
+	font-weight: 600;
+	paint-order: stroke;
+	stroke: #ffffff;
+	stroke-width: 3px;
+	opacity: 0;
+	transition: opacity 0.6s ease;
+}
+.route-label.is-visible { opacity: 1; }
+.route-label__count {
+	fill: #f03d1d;
+	font-size: 10px;
+	font-weight: 600;
+}
+.dest-dot {
+	fill: #f03d1d;
+	opacity: 0;
+	transition: opacity 0.5s ease;
+}
+.dest-dot.is-visible { opacity: 1; }
+/* Punto de un destino anterior, atenuado junto con su línea. */
+.dest-dot.is-visible.is-dimmed { opacity: 0.4; }
+.origin-label {
+	fill: #f03d1d;
+	font-family: Georgia, Arial, sans-serif;
+	font-size: 12px;
+	font-weight: 700;
+	paint-order: stroke;
+	stroke: #ffffff;
+	stroke-width: 3px;
+}
+/* Total de refugiados sobre Alemania: visible en la intro y el cierre. */
+.origin-total {
+	fill: #1f1f1f;
+	font-family: Georgia, Arial, sans-serif;
+	font-size: 11px;
+	font-weight: 600;
+	paint-order: stroke;
+	stroke: #ffffff;
+	stroke-width: 3px;
+	opacity: 0;
+	transition: opacity 0.6s ease;
+}
+.origin-total.is-visible { opacity: 1; }
+
+/* Leyenda sobre el mapa. */
+.legend {
+	position: absolute;
+	bottom: 1.4rem;
+	left: 0;
+	font-size: 0.78rem;
+	color: rgba(31, 31, 31, 0.66);
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	flex-wrap: wrap;
+	max-width: 60%;
+}
+.legend__dot {
+	width: 11px;
+	height: 11px;
+	border-radius: 50%;
+	display: inline-block;
+}
+.legend__dot--origin { background: #f03d1d; }
+.legend__note {
+	width: 100%;
+	color: rgba(31, 31, 31, 0.45);
+	font-size: 0.72rem;
+}
+
+/* En pantallas medianas, el mapa pasa arriba de la narrativa. */
+@media (max-width: 900px) {
+	.exodo-mapa {
+		display: block;
+	}
+	.scrolly__graphic {
+		width: 100%;
+		height: 60vh;
+		top: 0;
+	}
+	.scrolly__narrative {
+		width: 100%;
+		padding: 0 1vw;
+	}
+	.exodo-step {
+		min-height: 80vh;
+	}
+	.legend {
+		max-width: 90%;
+	}
+}
+/* ─── TESTIMONIO (voz humana, pull-quote) ─────────────────────── */
+.testimony {
+	width: min(100%, 52rem);
+	margin: 3.5rem auto 0;
+	text-align: center;
+}
+.testimony__mark {
+	display: block;
+	font-family: var(--font-display);
+	font-size: 4.5rem;
+	line-height: 0.6;
+	color: var(--accent);
+	opacity: 0.55;
+}
+.testimony blockquote {
+	margin: 0.6rem 0 0;
+	font-family: var(--font-display);
+	font-style: italic;
+	font-size: clamp(1.5rem, 3.2vw, 2.5rem);
+	line-height: 1.32;
+	font-weight: 500;
+	color: var(--ink);
+	text-wrap: balance;
+}
+.testimony figcaption {
+	margin-top: 1.8rem;
+	font-family: var(--font-label);
+	font-size: 0.84rem;
+	letter-spacing: 0.04em;
+	color: var(--ink-soft);
+}
+.testimony figcaption strong { color: var(--ink); font-weight: 700; }
+.testimony figcaption::before {
+	content: "";
+	display: block;
+	width: 2.5rem;
+	height: 2px;
+	margin: 0 auto 1.1rem;
+	background: var(--accent);
 }

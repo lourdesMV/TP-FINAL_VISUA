@@ -107,3 +107,60 @@ document.querySelectorAll('.flourish-scroll').forEach(flourishSection => {
 	window.addEventListener('scroll', update, { passive: true });
 	window.addEventListener('resize', update);
 })();
+
+// ─── Barra de progreso de capítulos ──────────────────────────────────────
+(function () {
+	const nav = document.querySelector('.chapter-progress');
+	if (!nav) return;
+
+	const items = Array.from(nav.querySelectorAll('.chapter-progress__item'));
+	const sections = items
+		.map(item => document.querySelector(item.querySelector('.chapter-progress__link').getAttribute('href')))
+		.filter(Boolean);
+
+	if (!sections.length) return;
+
+	// 1. Lógica del Observer (se mantiene igual, está perfecta)
+	function setActive(index) {
+		items.forEach((item, i) => item.classList.toggle('is-active', i === index));
+	}
+
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				const index = sections.indexOf(entry.target);
+				if (index !== -1) setActive(index);
+			}
+		});
+	}, { rootMargin: '-45% 0px -45% 0px' });
+
+	sections.forEach(section => observer.observe(section));
+
+	// 2. Lógica del Scroll optimizada con requestAnimationFrame
+	let isTicking = false;
+
+	function updateNavProgress() {
+		const doc = document.documentElement;
+		const scrollable = doc.scrollHeight - doc.clientHeight;
+		
+		// window.scrollY es más estándar en navegadores modernos
+		const currentScroll = window.scrollY || doc.scrollTop; 
+		const progress = scrollable > 0 ? Math.min(1, Math.max(0, currentScroll / scrollable)) : 0;
+		
+		nav.style.setProperty('--nav-progress', progress);
+		isTicking = false; // Liberamos el lock para el próximo frame
+	}
+
+	function onScroll() {
+		if (!isTicking) {
+			window.requestAnimationFrame(updateNavProgress);
+			isTicking = true;
+		}
+	}
+
+	// Inicializamos
+	updateNavProgress();
+	window.addEventListener('scroll', onScroll, { passive: true });
+	window.addEventListener('resize', onScroll, { passive: true });
+})();
+

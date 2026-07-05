@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El éxodo judío desde Alemania · 1933–1939</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="exodo-refugiados/styles.css" />
+</head>
+<body>
+
+  <!-- Scrollytelling: mapa sticky + narrativa -->
+  <main class="scrolly">
+    <!-- Mapa fijo -->
+    <div class="scrolly__graphic">
+      <svg id="map" aria-label="Mapa mundial de rutas de refugiados"></svg>
+      <div class="legend">
+        <span class="legend__dot legend__dot--origin"></span> Alemania (origen)
+        <span class="legend__note">Grosor de línea representa el número de refugiados</span>
+      </div>
+    </div>
+
+    <!-- Pasos narrativos (se generan por JS) -->
+    <div class="scrolly__narrative" id="narrative"></div>
+  </main>
+
+  <!-- Cierre -->
+  <footer class="closing">
+    <p class="closing__text">
+      Estas cifras son estimaciones históricas del período 1933–1939.
+      Detrás de cada línea hay vidas, familias y comunidades enteras que
+      debieron reconstruirse lejos de casa.
+    </p>
+  </footer>
+
+  <!-- Librerías (vendorizadas en /lib para funcionar sin conexión) -->
+  <script src="lib/d3.min.js"></script>
+  <script src="lib/topojson-client.min.js"></script>
+  <script src="lib/gsap.min.js"></script>
+  <script src="lib/ScrollTrigger.min.js"></script>
+  <script src="data/world-atlas.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
