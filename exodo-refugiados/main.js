@@ -385,8 +385,8 @@ function construirNarrativa(datos) {
     clase: "exodo-step--final",
     idx: datos.length,
     titulo: "El mapa completo",
-    subtitulo: "Un éxodo global",
-    texto: "El mapa completo muestra la dimensión del desplazamiento: cientos de miles de personas distribuidas por cuatro continentes en apenas seis años.",
+    subtitulo: "El alcance del desplazamiento",
+    texto: "Los datos evidencian un movimiento sin precedentes. En un lapso de seis años, el flujo migratorio se expandió de forma drástica, distribuyendo a cientos de miles de personas por diversas regiones de América, África, Asia y Oceanía.",
     total,
   }));
 
@@ -394,9 +394,9 @@ function construirNarrativa(datos) {
   cont.appendChild(crearPaso({
     clase: "exodo-step--final",
     idx: datos.length + 2,
-    titulo: "Todos los números juntos",
-    subtitulo: "Refugiados por destino",
-    texto: "Ordenados de mayor a menor, los quince destinos muestran la misma historia: casi un tercio de quienes emigraron se concentró en un solo país: EE. UU.",
+    titulo: "La concentración del refugio",
+    subtitulo: "Un destino dominante",
+    texto: "Al ordenar los 25 principales destinos, aparece un patrón claro: uno de cada cinco refugiados se estableció en Estados Unidos.",
   }));
 }
 

@@ -179,7 +179,7 @@ a {
 	font-weight: 700;
 	letter-spacing: 0.22em;
 	text-transform: uppercase;
-	color: #f03d1d;
+	color: #950606;
 	max-width: fit-content;
 }
 
@@ -215,7 +215,7 @@ a {
 	font-weight: 700;
 	letter-spacing: 0.22em;
 	text-transform: uppercase;
-	color: #f03d1d;
+	color: #950606;
 }
 
 /* Variante de chapter sin espacio superior ni borde inferior. */
@@ -311,7 +311,7 @@ a {
 /* Ajuste del embed dentro de la mitad izquierda */
 .flourish-scroll__sticky .flourish-embed {
     width: 100%;
-    height: 75vh;
+    height: 100vh;
     margin: 0;
 }
 
@@ -345,7 +345,7 @@ a {
 .tarjeta-scroll {
 	background-color: rgba(255, 255, 255, 0.96);
 	border: 1px solid rgba(31, 31, 31, 0.12);
-	border-left: 3px solid #f03d1d;
+	border-left: 3px solid #950606;
 	border-radius: 2px;
 	box-shadow: 0 16px 40px rgba(26, 22, 18, 0.1);
 	padding: 2.2rem;
@@ -448,7 +448,7 @@ a {
 	font-weight: 700;
 	letter-spacing: 0.28em;
 	text-transform: uppercase;
-	color: #f03d1d;           /* tu rojo memorial */
+	color: #950606;           /* tu rojo memorial */
 }
 
 /* El número gigante. tabular-nums evita que "baile" el ancho al contar. */
@@ -501,7 +501,7 @@ a {
 	inset: 0;
 	transform-origin: left;
 	transform: scaleX(var(--progress, 0));
-	background: #f03d1d;
+	background: #950606;
 }
 
 /* Pista de scroll */
@@ -644,8 +644,8 @@ footer p {
 }
 
 .chapter-progress__item.is-active .chapter-progress__dot {
-	background: #f03d1d;
-	border-color: #f03d1d;
+	background: #950606;
+	border-color: #950606;
 	transform: scale(1.35);
 }
 
@@ -726,8 +726,8 @@ footer p {
 	pointer-events: auto;
 }
 .exodo-mapa__chart .flourish-embed {
-	width: 90%;
-	height: 80%;
+	width: 100%;
+	height: 100%;
 }
 .exodo-mapa__chart .flourish-embed iframe {
 	height: 100% !important;
@@ -759,7 +759,7 @@ footer p {
 .exodo-step.is-active .exodo-step__card {
 	opacity: 1;
 	transform: translateY(0);
-	border-left-color: #f03d1d;
+	border-left-color: #950606;
 }
 .exodo-step__country {
 	font-family: "Cormorant Garamond", Georgia, serif;
@@ -770,7 +770,7 @@ footer p {
 }
 .exodo-step__count {
 	font-size: 1rem;
-	color: #f03d1d;
+	color: #950606;
 	font-weight: 700;
 	margin: 0 0 0.9rem;
 }
@@ -782,11 +782,11 @@ footer p {
 }
 .exodo-step--intro .exodo-step__card,
 .exodo-step--final .exodo-step__card {
-	border-left-color: #f03d1d;
+	border-left-color: #950606;
 }
 .exodo-step--intro .exodo-step__country,
 .exodo-step--final .exodo-step__country {
-	color: #f03d1d;
+	color: #950606;
 }
 
 /* Más alto que el resto: da más distancia de scroll para que una tarjeta
@@ -802,7 +802,7 @@ footer p {
 	stroke-width: 0.4px;
 }
 .country--origin {
-	fill: #f03d1d;
+	fill: #950606;
 	filter: drop-shadow(0 0 6px rgba(240, 61, 29, 0.45));
 }
 .country--dest.is-lit {
@@ -810,7 +810,7 @@ footer p {
 }
 .route {
 	fill: none;
-	stroke: #f03d1d;
+	stroke: #950606;
 	stroke-linecap: round;
 	filter: drop-shadow(0 1px 2px rgba(31, 31, 31, 0.25));
 	opacity: 1;
@@ -834,12 +834,12 @@ footer p {
 }
 .route-label.is-visible { opacity: 1; }
 .route-label__count {
-	fill: #f03d1d;
+	fill: #950606;
 	font-size: 10px;
 	font-weight: 600;
 }
 .dest-dot {
-	fill: #f03d1d;
+	fill: #950606;
 	opacity: 0;
 	transition: opacity 0.5s ease;
 }
@@ -847,7 +847,7 @@ footer p {
 /* Punto de un destino anterior, atenuado junto con su línea. */
 .dest-dot.is-visible.is-dimmed { opacity: 0.4; }
 .origin-label {
-	fill: #f03d1d;
+	fill: #950606;
 	font-family: Georgia, Arial, sans-serif;
 	font-size: 12px;
 	font-weight: 700;
@@ -888,7 +888,7 @@ footer p {
 	border-radius: 50%;
 	display: inline-block;
 }
-.legend__dot--origin { background: #f03d1d; }
+.legend__dot--origin { background: #950606; }
 .legend__note {
 	width: 100%;
 	color: rgba(31, 31, 31, 0.45);
