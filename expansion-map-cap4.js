@@ -160,14 +160,27 @@
 
     svg.attr("viewBox", `0 0 ${width} ${height}`);
 
-    const projection = d3.geoMercator()
-      .fitExtent([[28, 26], [width - 28, height - 24]], {
-        type: "FeatureCollection",
-        features: countries.features.filter(d => {
-          const [lon, lat] = d3.geoCentroid(d);
-          return lon > -25 && lon < 45 && lat > 32 && lat < 72;
-        })
-      });
+const europeFeatures = countries.features.filter(feature => {
+  const [lon, lat] = d3.geoCentroid(feature);
+
+  return (
+    lon >= -15 &&
+    lon <= 45 &&
+    lat >= 34 &&
+    lat <= 72
+  );
+});
+
+const europe = {
+  type: "FeatureCollection",
+  features: europeFeatures
+};
+
+const projection = d3.geoMercator()
+  .center([15, 53])
+  .scale(570)
+  .translate([width * 0.5, height * 0.55])
+  .clipExtent([[0, 0], [width, height]]);
 
     const path = d3.geoPath(projection);
 
@@ -175,7 +188,7 @@
       .append("g")
       .attr("aria-hidden", "true")
       .selectAll("path")
-      .data(countries.features)
+      .data(europeFeatures)
       .join("path")
       .attr("class", "expansion-country")
       .attr("d", path);
