@@ -1000,10 +1000,8 @@ a {
 	text-align: center;
 }
 .testimony__mark {
-	display: block;
 	font-family: var(--font-display);
-	font-size: 4.5rem;
-	line-height: 0.6;
+	font-size: 1.3em;
 	color: var(--accent);
 	opacity: 0.55;
 }
