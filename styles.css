@@ -532,17 +532,80 @@ a {
 	.figure__hint { display: none; }
 }
 
-footer {
-    text-align: center;
-    padding: 2rem;
-	background: 	
+.site-footer {
+	padding: 3.5rem 1.5rem 1.5rem;
+	background:
 		radial-gradient(circle at top, rgba(255, 241, 221, 0.18), transparent 30%),
-		linear-gradient(180deg, #ffffff 0%, #ffffff 58%, #f1ece3 100%);    color: white;
+		linear-gradient(180deg, #ffffff 0%, #ffffff 58%, #f1ece3 100%);
+	border-top: 1px solid rgba(120, 0, 0, 0.15);
+	color: #780000;
 }
 
-/* Texto interno del footer */
-footer p {
-    color: #780000;
+.site-footer__inner {
+	max-width: var(--max-width);
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1.4fr 1fr 1fr;
+	gap: 2rem 3rem;
+	text-align: left;
+	padding-bottom: 2rem;
+	border-bottom: 1px solid rgba(120, 0, 0, 0.12);
+}
+
+.site-footer__title {
+	margin: 0 0 0.5rem;
+	font-family: "Cormorant Garamond", "Georgia", serif;
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: #780000;
+}
+
+.site-footer__tagline {
+	margin: 0;
+	font-size: 0.9rem;
+	line-height: 1.5;
+	color: rgba(120, 0, 0, 0.75);
+}
+
+.site-footer__label {
+	margin: 0 0 0.6rem;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: rgba(120, 0, 0, 0.6);
+}
+
+.site-footer__team {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: 0.92rem;
+	line-height: 1.7;
+	color: #780000;
+}
+
+.site-footer__sources {
+	margin: 0;
+	font-size: 0.88rem;
+	line-height: 1.6;
+	color: rgba(120, 0, 0, 0.75);
+}
+
+.site-footer__bottom {
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding-top: 1.25rem;
+	text-align: center;
+	font-size: 0.8rem;
+	color: rgba(120, 0, 0, 0.65);
+}
+
+@media (max-width: 720px) {
+	.site-footer__inner {
+		grid-template-columns: 1fr;
+		text-align: center;
+	}
 }
 
 
