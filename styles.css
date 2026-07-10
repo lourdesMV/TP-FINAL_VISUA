@@ -1033,3 +1033,23 @@ a {
 	margin: 0 auto 1.1rem;
 	background: var(--accent);
 }
+/* Gráficos estáticos de Flourish */
+.bloque-interactivo--flourish {
+	width: min(100%, 1000px);
+	margin: 3rem auto 5rem;
+}
+
+.bloque-interactivo--flourish .flourish-embed {
+	width: 100%;
+	min-height: 650px;
+}
+
+@media (max-width: 720px) {
+	.bloque-interactivo--flourish {
+		margin: 2rem auto 3.5rem;
+	}
+
+	.bloque-interactivo--flourish .flourish-embed {
+		min-height: 520px;
+	}
+}
