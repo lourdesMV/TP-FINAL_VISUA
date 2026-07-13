@@ -304,6 +304,164 @@ if (enemyNextButton) {
 
 renderEnemyTimeline();
 
+// Capitulo 6: Survey victimas
+
+document.addEventListener("DOMContentLoaded", () => {
+	const storyFrame = document.querySelector("#waffle-story");
+	const scrolly = document.querySelector(".waffle-scrolly");
+
+	const scrollItems = Array.from(
+		document.querySelectorAll(".waffle-scroll-item")
+	);
+
+	const copyItems = Array.from(
+		document.querySelectorAll(".waffle-copy")
+	);
+
+	if (!storyFrame || !scrolly || scrollItems.length === 0) {
+		return;
+	}
+
+	const storyUrl = "https://flo.uri.sh/story/3728003/embed";
+
+	let currentSlide = 0;
+	let currentItem = null;
+	let previousScrollY = window.scrollY;
+	let scrollDirection = "down";
+	let ticking = false;
+
+
+	function changeStorySlide(slideNumber) {
+		if (
+			!Number.isInteger(slideNumber) ||
+			slideNumber < 0 ||
+			slideNumber === currentSlide
+		) {
+			return;
+		}
+
+		currentSlide = slideNumber;
+
+		/*
+		 * Navega el iframe existente a otra slide de la misma Story.
+		 * Como solo cambia #slide-N, Flourish realiza la transición
+		 * entre los estados del mismo Survey.
+		 */
+		window.open(
+			`${storyUrl}#slide-${slideNumber}`,
+			"waffleStoryFrame"
+		);
+	}
+
+
+	function showCopy(copyToShow) {
+		copyItems.forEach((copy) => {
+			copy.classList.toggle(
+				"is-active",
+				copy === copyToShow
+			);
+		});
+
+		scrolly.classList.toggle(
+			"has-copy",
+			Boolean(copyToShow)
+		);
+	}
+
+
+	function activateItem(item) {
+		if (!item || item === currentItem) {
+			return;
+		}
+
+		currentItem = item;
+
+		if (item.classList.contains("waffle-intro-spacer")) {
+			changeStorySlide(0);
+			showCopy(null);
+			return;
+		}
+		
+		if (item.classList.contains("waffle-copy")) {
+			const slideNumber = Number(item.dataset.slide);
+
+			changeStorySlide(slideNumber);
+			showCopy(item);
+
+			return;
+		}
+
+		if (item.classList.contains("waffle-transition")) {
+			showCopy(null);
+
+			const fromSlide = Number(item.dataset.from);
+			const toSlide = Number(item.dataset.to);
+
+			const destinationSlide =
+				scrollDirection === "down"
+					? toSlide
+					: fromSlide;
+
+			changeStorySlide(destinationSlide);
+		}
+	}
+
+
+	function updateWaffleScrolly() {
+		const activationPoint = window.innerHeight * 0.55;
+
+		const activeItem = scrollItems.find((item) => {
+			const rect = item.getBoundingClientRect();
+
+			return (
+				rect.top <= activationPoint &&
+				rect.bottom > activationPoint
+			);
+		});
+
+		activateItem(activeItem);
+
+		ticking = false;
+	}
+
+
+	function handleWaffleScroll() {
+		const currentScrollY = window.scrollY;
+
+		if (currentScrollY > previousScrollY) {
+			scrollDirection = "down";
+		} else if (currentScrollY < previousScrollY) {
+			scrollDirection = "up";
+		}
+
+		previousScrollY = currentScrollY;
+
+		if (!ticking) {
+			window.requestAnimationFrame(updateWaffleScrolly);
+			ticking = true;
+		}
+	}
+
+
+	window.addEventListener(
+		"scroll",
+		handleWaffleScroll,
+		{ passive: true }
+	);
+
+	window.addEventListener(
+		"resize",
+		updateWaffleScrolly
+	);
+
+	/*
+	* Al ingresar, no mostramos ningún texto:
+	* primero se observa el Survey completo.
+	*/
+	showCopy(null);
+	updateWaffleScrolly();
+});
+
 // ─── Barra de progreso de capítulos ──────────────────────────────────────
 (function () {
 	const nav = document.querySelector('.chapter-progress');
