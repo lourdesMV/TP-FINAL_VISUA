@@ -23,9 +23,7 @@
 	box-sizing: border-box;
 }
 
-/* Habilita un scroll suave cuando se navega por anclas o cambios de sección. */
 html {
-	scroll-behavior: smooth;
 	overflow-x: clip;
 }
 

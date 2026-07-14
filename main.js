@@ -699,6 +699,17 @@ if (document.readyState === "loading") {
 
 	sections.forEach(section => observer.observe(section));
 
+	// Scroll suave solo para los clicks en la barra de navegación
+	// (reemplaza a `scroll-behavior: smooth` global, que entra en conflicto con los pines de ScrollTrigger).
+	items.forEach((item, i) => {
+		const link = item.querySelector('.chapter-progress__link');
+		if (!link) return;
+		link.addEventListener('click', (e) => {
+			e.preventDefault();
+			sections[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
+		});
+	});
+
 	// 2. Lógica del Scroll optimizada con requestAnimationFrame
 	let isTicking = false;
 
