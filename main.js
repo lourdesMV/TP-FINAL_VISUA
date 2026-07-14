@@ -19,6 +19,35 @@ if (heroImage && heroSection) {
 	window.addEventListener('resize', updateHeroParallax);
 }
 
+// ─── Efecto de máquina de escribir para el título del hero ────────────────
+(function () {
+	const titleEl = document.getElementById('heroTitle');
+	const textEl = document.getElementById('heroTitleText');
+	const cursorEl = document.getElementById('heroCursor');
+	if (!titleEl || !textEl) return;
+
+	const fullText = titleEl.dataset.fullText || '';
+	const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	if (prefersReducedMotion) {
+		textEl.textContent = fullText;
+		return;
+	}
+
+	let i = 0;
+	function tick() {
+		i++;
+		textEl.textContent = fullText.slice(0, i);
+		if (i < fullText.length) {
+			setTimeout(tick, 40 + Math.random() * 55);
+		} else if (cursorEl) {
+			cursorEl.classList.add('is-done');
+		}
+	}
+
+	setTimeout(tick, 400);
+})();
+
 // ─── Flourish scroll-driven story con HTML (Intersection Observer) ────────
 // Maneja múltiples secciones .flourish-scroll de forma independiente
 

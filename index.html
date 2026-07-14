@@ -77,14 +77,16 @@
 		<section class="hero" aria-label="Introducción">
 			<div class="hero__media" aria-hidden="true">
 				<div class="hero__media-tint"></div>
-				<img class="hero__image" src="img/monumento_judios.jpg" alt="" />
+				<img class="hero__image" src="img/magnitud.jpeg" alt="" />
 			</div>
 
 			<div class="hero__content">
 				<p class="hero__eyebrow">El Holocausto</p>
-				<h1>De la crisis al genocidio</h1>
+				<h1 id="heroTitle" data-full-text="La historia que no debemos olvidar" aria-label="La historia que no debemos olvidar">
+					<span id="heroTitleText" aria-hidden="true"></span><span class="hero__cursor" id="heroCursor" aria-hidden="true">|</span>
+				</h1>
 				<p class="hero__dek">
-					Esto no comenzó en Auschwitz.
+					Entre 1933 y 1945, el régimen nazi asesinó sistemáticamente a seis millones de judíos y a millones de otras personas. Esta es la historia de cómo ocurrió, y por qué recordarla sigue importando.
 				</p>
 			</div>
 		</section>
@@ -1260,7 +1262,7 @@ Cada grupo fue perseguido bajo razones y políticas diferentes.
 <footer class="site-footer">
 	<div class="site-footer__inner">
 		<div class="site-footer__brand">
-			<p class="site-footer__title">6 millones de razones para recordar</p>
+			<p class="site-footer__title">Seis millones de razones para recordar</p>
 			<p class="site-footer__tagline">Un proyecto de scrollytelling sobre el Holocausto.</p>
 		</div>
 
@@ -1274,11 +1276,14 @@ Cada grupo fue perseguido bajo razones y políticas diferentes.
 		</div>
 
 		<div class="site-footer__meta">
-			<p class="site-footer__label">Fuentes</p>
-			<p class="site-footer__sources">
-				United States Holocaust Memorial Museum · Anne Frank House · Flourish Studio
-			</p>
+			<p class="site-footer__label">Fuentes principales</p>
+			<ul class="site-footer__team">
+				<li>United States Holocaust Memorial Museum</li>
+				<li>Anne Frank House</li>
+				<li></li>
+			</ul>
 		</div>
+		
 	</div>
 
 	<p class="site-footer__bottom">Visualización de Datos · Sección 1 · 2026</p>

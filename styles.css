@@ -151,6 +151,25 @@ a {
 	color: #fefefe;
 	text-wrap: balance;
 	text-shadow: 0 2px 18px rgba(0, 0, 0, 0.34);
+	min-height: 1.1em;
+}
+
+/* Cursor parpadeante del efecto de máquina de escribir del título del hero. */
+.hero__cursor {
+	display: inline-block;
+	font-weight: 400;
+	animation: hero-cursor-blink 1s step-end infinite;
+}
+.hero__cursor.is-done {
+	opacity: 1;
+}
+@keyframes hero-cursor-blink {
+	0%, 45% { opacity: 1; }
+	50%, 95% { opacity: 0; }
+	100% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.hero__cursor { animation: none; opacity: 0; }
 }
 
 /* Texto descriptivo bajo el título; se centra con márgenes automáticos. */
@@ -534,12 +553,10 @@ a {
 }
 
 .site-footer {
-	padding: 3.5rem 1.5rem 1.5rem;
-	background:
-		radial-gradient(circle at top, rgba(255, 241, 221, 0.18), transparent 30%),
-		linear-gradient(180deg, #ffffff 0%, #ffffff 58%, #f1ece3 100%);
-	border-top: 1px solid rgba(120, 0, 0, 0.15);
-	color: #780000;
+	padding: 4.5rem 1.5rem 1.75rem;
+	background: var(--bg);
+	border-top: 1px solid rgba(246, 240, 231, 0.1);
+	color: var(--text);
 }
 
 .site-footer__inner {
@@ -549,32 +566,34 @@ a {
 	grid-template-columns: 1.4fr 1fr 1fr;
 	gap: 2rem 3rem;
 	text-align: left;
-	padding-bottom: 2rem;
-	border-bottom: 1px solid rgba(120, 0, 0, 0.12);
+	padding-bottom: 2.25rem;
+	border-bottom: 1px solid rgba(246, 240, 231, 0.12);
 }
 
 .site-footer__title {
-	margin: 0 0 0.5rem;
+	margin: 0 0 0.6rem;
 	font-family: "Cormorant Garamond", "Georgia", serif;
-	font-size: 1.25rem;
-	font-weight: 700;
-	color: #780000;
+	font-size: 1.7rem;
+	line-height: 1.15;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+	color: var(--text);
 }
 
 .site-footer__tagline {
 	margin: 0;
 	font-size: 0.9rem;
 	line-height: 1.5;
-	color: rgba(120, 0, 0, 0.75);
+	color: var(--muted);
 }
 
 .site-footer__label {
 	margin: 0 0 0.6rem;
 	font-size: 0.72rem;
 	font-weight: 700;
-	letter-spacing: 0.08em;
+	letter-spacing: 0.1em;
 	text-transform: uppercase;
-	color: rgba(120, 0, 0, 0.6);
+	color: var(--accent);
 }
 
 .site-footer__team {
@@ -583,14 +602,14 @@ a {
 	list-style: none;
 	font-size: 0.92rem;
 	line-height: 1.7;
-	color: #780000;
+	color: var(--text);
 }
 
 .site-footer__sources {
 	margin: 0;
 	font-size: 0.88rem;
 	line-height: 1.6;
-	color: rgba(120, 0, 0, 0.75);
+	color: var(--muted);
 }
 
 .site-footer__bottom {
@@ -599,7 +618,7 @@ a {
 	padding-top: 1.25rem;
 	text-align: center;
 	font-size: 0.8rem;
-	color: rgba(120, 0, 0, 0.65);
+	color: rgba(246, 240, 231, 0.45);
 }
 
 @media (max-width: 720px) {
