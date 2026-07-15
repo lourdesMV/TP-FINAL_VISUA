@@ -1,0 +1,381 @@
+:root {
+  --posguerra-bg: #ffffff;
+  --posguerra-text: #1f1f1f;
+  --posguerra-muted: rgba(31, 31, 31, 0.66);
+  --posguerra-faint: rgba(31, 31, 31, 0.42);
+  --posguerra-accent: #5a0d0f;
+  --posguerra-accent-soft: #8d3b3f;
+  --posguerra-line: rgba(31, 31, 31, 0.14);
+  --posguerra-card: rgba(255, 255, 255, 0.97);
+  --posguerra-track: #ded8cf;
+}
+
+/* ================================
+   LAYOUT GENERAL
+================================ */
+
+.posguerra-scrolly {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 62%) minmax(320px, 38%);
+  align-items: start;
+  background: var(--posguerra-bg);
+}
+
+.posguerra-scrolly__graphic {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 2rem 3rem 1.5rem;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  background: var(--posguerra-bg);
+  overflow: hidden;
+}
+
+.posguerra-scrolly__steps {
+  padding: 0 4vw;
+}
+
+/* ================================
+   ENCABEZADO
+================================ */
+
+.posguerra-graphic__header {
+  position: relative;
+  z-index: 3;
+  max-width: 820px;
+  padding-bottom: 1rem;
+  background: var(--posguerra-bg);
+}
+
+.posguerra-graphic__eyebrow,
+.posguerra-step__kicker,
+.posguerra-closing__eyebrow {
+  margin: 0;
+  color: var(--posguerra-accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.posguerra-graphic__header h2 {
+  margin: 0.15rem 0 0.5rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.6rem, 5vw, 5.2rem);
+  line-height: 0.95;
+  color: var(--posguerra-text);
+}
+
+.posguerra-graphic__intro {
+  max-width: 760px;
+  margin: 0;
+  color: var(--posguerra-muted);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+/* ================================
+   ETAPA DE CIFRAS
+================================ */
+
+.posguerra-figure {
+  align-self: center;
+  max-width: 850px;
+  padding: 1rem 0 1.5rem;
+  transition: opacity 450ms ease, transform 450ms ease;
+}
+
+.posguerra-figure__year {
+  margin: 0 0 0.4rem;
+  color: var(--posguerra-accent);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.posguerra-figure__number {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(5rem, 11vw, 10rem);
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  color: var(--posguerra-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.posguerra-figure__label {
+  margin: 1rem 0 0;
+  max-width: 760px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.7rem, 3vw, 2.8rem);
+  line-height: 1.05;
+  color: var(--posguerra-accent);
+}
+
+.posguerra-figure__description {
+  max-width: 720px;
+  margin: 1rem 0 0;
+  color: var(--posguerra-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ================================
+   TIMELINE
+================================ */
+
+.posguerra-timeline {
+  align-self: center;
+  display: none;
+  min-height: 0;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 450ms ease, transform 450ms ease;
+}
+
+.posguerra-timeline.is-visible {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#posguerra-timeline-svg {
+  width: 100%;
+  height: 190px;
+  display: block;
+  overflow: visible;
+}
+
+.posguerra-timeline__detail {
+  max-width: 760px;
+  margin-top: 1.4rem;
+  padding-left: 1.2rem;
+  border-left: 3px solid var(--posguerra-accent);
+}
+
+.posguerra-timeline__date {
+  margin: 0 0 0.2rem;
+  color: var(--posguerra-accent);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.posguerra-timeline__detail h3 {
+  margin: 0 0 0.45rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2rem, 3vw, 3.2rem);
+  line-height: 1;
+  color: var(--posguerra-text);
+}
+
+.posguerra-timeline__detail p {
+  margin: 0;
+  color: var(--posguerra-muted);
+  line-height: 1.55;
+}
+
+.posguerra-timeline__impact {
+  margin-top: 0.55rem !important;
+  color: var(--posguerra-text) !important;
+  font-weight: 600;
+}
+
+.posguerra-timeline__axis {
+  stroke: var(--posguerra-track);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.posguerra-timeline__progress {
+  stroke: var(--posguerra-accent);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.posguerra-timeline__dot {
+  fill: var(--posguerra-track);
+  stroke: var(--posguerra-bg);
+  stroke-width: 3;
+  transition: fill 300ms ease, r 300ms ease;
+}
+
+.posguerra-timeline__dot.is-active {
+  fill: var(--posguerra-accent);
+}
+
+.posguerra-timeline__dot.is-past {
+  fill: var(--posguerra-accent-soft);
+}
+
+.posguerra-timeline__year-label {
+  fill: var(--posguerra-muted);
+  font-family: Georgia, serif;
+  font-size: 13px;
+  text-anchor: middle;
+}
+
+/* ================================
+   NOTA METODOLÓGICA
+================================ */
+
+.posguerra-graphic__method {
+  margin: 0;
+  max-width: 820px;
+  color: var(--posguerra-faint);
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+/* ================================
+   PASOS DEL SCROLL
+================================ */
+
+.posguerra-step {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.posguerra-step--transition {
+  min-height: 115vh;
+}
+
+.posguerra-step--final {
+  min-height: 125vh;
+}
+
+.posguerra-step__card {
+  padding: 1.7rem 1.8rem;
+  background: var(--posguerra-card);
+  border: 1px solid var(--posguerra-line);
+  border-left: 3px solid rgba(90, 13, 15, 0.28);
+  box-shadow: 0 14px 35px rgba(31, 31, 31, 0.08);
+  opacity: 0.35;
+  transform: translateY(14px);
+  transition:
+    opacity 450ms ease,
+    transform 450ms ease,
+    border-color 450ms ease;
+}
+
+.posguerra-step.is-active .posguerra-step__card {
+  opacity: 1;
+  transform: translateY(0);
+  border-left-color: var(--posguerra-accent);
+}
+
+.posguerra-step__card h3 {
+  margin: 0.2rem 0 0.65rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.9rem;
+  line-height: 1.05;
+  color: var(--posguerra-text);
+}
+
+.posguerra-step__card p:last-child {
+  margin: 0;
+  color: var(--posguerra-muted);
+  line-height: 1.6;
+}
+
+.posguerra-step__card--transition {
+  background: #f5f0e8;
+}
+
+/* ================================
+   CIERRE
+================================ */
+
+.posguerra-closing {
+  min-height: 85vh;
+  padding: 5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #f5f0e8;
+}
+
+.posguerra-closing h2 {
+  max-width: 950px;
+  margin: 0.5rem 0 1rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.8rem, 6vw, 5.8rem);
+  line-height: 0.98;
+  color: var(--posguerra-text);
+}
+
+.posguerra-closing > p:last-child {
+  max-width: 720px;
+  margin: 0;
+  color: var(--posguerra-muted);
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 860px) {
+  .posguerra-scrolly {
+    display: block;
+  }
+
+  .posguerra-scrolly__graphic {
+    height: 64vh;
+    padding: 1rem 1rem 0.8rem;
+    z-index: 5;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  .posguerra-graphic__header h2 {
+    font-size: 2.7rem;
+  }
+
+  .posguerra-graphic__intro {
+    display: none;
+  }
+
+  .posguerra-figure__number {
+    font-size: clamp(4.5rem, 18vw, 7rem);
+  }
+
+  .posguerra-figure__label {
+    font-size: 1.7rem;
+  }
+
+  .posguerra-figure__description {
+    display: none;
+  }
+
+  .posguerra-graphic__method {
+    display: none;
+  }
+
+  .posguerra-scrolly__steps {
+    padding: 0 6vw;
+  }
+
+  .posguerra-step {
+    min-height: 85vh;
+  }
+
+  #posguerra-timeline-svg {
+    height: 145px;
+  }
+
+  .posguerra-timeline__detail {
+    margin-top: 0.6rem;
+  }
+
+  .posguerra-timeline__detail h3 {
+    font-size: 1.8rem;
+  }
+}
